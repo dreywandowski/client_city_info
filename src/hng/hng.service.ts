@@ -14,9 +14,14 @@ export class HngService {
         return this.configService.get<string>('TEMP_KEY');
     }
 
+    weatherApiKey(): string {
+        return this.configService.get<string>('WEATHER_API_KEY');
+    }
+
+
     async getLocationFromIp(ip: string): Promise<any> {
         try {
-            const response = await axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${this.locationKey()}& ip=${ip}`);
+            const response = await axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${this.locationKey()}`);
             let info: string[] = [response.data.city,
             response.data.latitude.toString(),
             response.data.longitude.toString()
