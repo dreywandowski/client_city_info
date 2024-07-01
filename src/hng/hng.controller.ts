@@ -29,6 +29,7 @@ export class HngController {
             response.status(500).json({
                 message: 'An error occurred',
                 error: error.message,
+                ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress
             });
         }
     }
