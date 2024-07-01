@@ -4,7 +4,7 @@ import { HngController } from './hng.controller';
 import { HngService } from './hng.service';
 
 @Module({
-  imports: [ConfigModule],
+  imports: [ConfigModule.forRoot()],
   controllers: [HngController],
   providers: [HngService]
 })
