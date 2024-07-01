@@ -21,7 +21,7 @@ export class HngService {
 
     async getLocationFromIp(ip: string): Promise<any> {
         try {
-            const response = await axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${this.locationKey()}`);
+            const response = await axios.get(`https://api.ipgeolocation.io/ipgeo?ip=${ip}&apiKey=${this.locationKey()}`);
             let info: string[] = [response.data.city,
             response.data.latitude.toString(),
             response.data.longitude.toString()
