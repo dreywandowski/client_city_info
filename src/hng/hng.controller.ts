@@ -15,6 +15,9 @@ export class HngController {
         try {
             const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
             const locationData = await this.HngService.getLocationFromIp(clientIp);
+            if (!locationData) {
+                throw new Error('Unable to get location data');
+            }
             const tempData = await this.HngService.getTemparatureFromLocation(locationData[1], locationData[2]);
 
             response.status(200).json({

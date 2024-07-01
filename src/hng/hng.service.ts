@@ -22,11 +22,16 @@ export class HngService {
     async getLocationFromIp(ip: string): Promise<any> {
         try {
             const response = await axios.get(`https://ipapi.co/${ip}/json`);
-            let info: string[] = [response.data.city,
-            response.data.latitude,
-            response.data.longitude
-            ];
-            return info;
+            if (!response.data.error) {
+                let info: string[] = [response.data.city,
+                response.data.latitude,
+                response.data.longitude
+                ];
+                return info;
+            }
+            else {
+                return false;
+            }
         } catch (error) {
             throw new Error('Unable to fetch location data ' + error.message);
         }
