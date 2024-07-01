@@ -1,18 +1,20 @@
+import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
-import { HngController } from './hng.controller';
+import { HngService } from './hng.service';
 
-describe('HngController', () => {
-  let controller: HngController;
+describe('HngService', () => {
+  let service: HngService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [HngController],
+      imports: [ConfigModule.forRoot()],
+      providers: [HngService],
     }).compile();
 
-    controller = module.get<HngController>(HngController);
+    service = module.get<HngService>(HngService);
   });
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
+    expect(service).toBeDefined();
   });
 });
