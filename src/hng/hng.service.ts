@@ -18,6 +18,11 @@ export class HngService {
         return this.configService.get<string>('WEATHER_API_KEY');
     }
 
+    async ipifyResponse(): Promise<string> {
+        let ipp = await axios.get('https://api.ipify.org?format=json');
+        return ipp.data.ip;
+    }
+
 
     async getLocationFromIp(ip: string): Promise<any> {
         try {
