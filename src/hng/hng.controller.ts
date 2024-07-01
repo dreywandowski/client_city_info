@@ -13,7 +13,7 @@ export class HngController {
         @Res() response: Response,
         @Request() req: any,) {
         try {
-            const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+            const clientIp = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
             const locationData = await this.HngService.getLocationFromIp(clientIp);
             if (!locationData) {
                 throw new Error('Unable to get location data');
