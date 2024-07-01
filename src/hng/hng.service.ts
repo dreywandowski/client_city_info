@@ -21,10 +21,10 @@ export class HngService {
 
     async getLocationFromIp(ip: string): Promise<any> {
         try {
-            const response = await axios.get(`https://api.ipgeolocation.io/ipgeo?ip=${ip}&apiKey=${this.locationKey()}`);
+            const response = await axios.get(`https://ipapi.co/${ip}/json`);
             let info: string[] = [response.data.city,
-            response.data.latitude.toString(),
-            response.data.longitude.toString()
+            response.data.latitude,
+            response.data.longitude
             ];
             return info;
         } catch (error) {
